@@ -1,0 +1,68 @@
+{
+  "case": {
+    "name": "The Riverside Manor Murder",
+    "description": "Famous novelist Eleanor Wright was found poisoned at her Riverside Manor during her annual literary gala. The victim was discovered in her study after excusing herself from 25 guests (5 family members, 10 close friends, and 10 literary associates). The defendant is her personal assistant who had access to her medication and was the last person seen with her.",
+    "population": 25,
+    "details": "The victim died from cyanide poisoning, which was added to her heart medication. The cause of death was initially thought to be natural until toxicology reports indicated homicide. The defendant is Eleanor's personal assistant of 7 years who claims she only delivered Eleanor's regular medication as instructed. The victim recently made significant changes to her will."
+  },
+  "prior": {
+    "odds": 0.04,
+    "db": -14,
+    "explanation": "Initially, assuming any of the 25 guests could be guilty, the prior probability is 1/25."
+  },
+  "evidence": [
+    {
+      "name": "Access to Medication",
+      "description": "The defendant was responsible for managing the victim's medications and had direct access to the heart medication that was poisoned.",
+      "prob_guilty": 0.95,
+      "prob_innocent": 0.15,
+      "explanation": "If guilty, the defendant would almost certainly need access to the medication (95%). If innocent, there's a lower chance the defendant would be involved with the specific medication that was tampered with versus other staff or guests."
+    },
+    {
+      "name": "Financial Motive",
+      "description": "Bank records show the defendant was in significant debt, and the recent changes to the victim's will included a substantial bequest to the defendant.",
+      "prob_guilty": 0.80,
+      "prob_innocent": 0.10,
+      "explanation": "A guilty person often has financial motivation. Many people have financial troubles without resorting to murder, but the specific timing of the will change creates a stronger correlation if guilty."
+    },
+    {
+      "name": "Witness Testimony",
+      "description": "A guest reports seeing the defendant entering the victim's private study carrying a glass of water, 30 minutes before the body was discovered.",
+      "prob_guilty": 0.90,
+      "prob_innocent": 0.40,
+      "explanation": "If guilty, the defendant would need an opportunity to administer the poison. If innocent, the defendant may have legitimately been delivering medication and water as part of regular duties."
+    },
+    {
+      "name": "Chemical Knowledge",
+      "description": "Search history on the defendant's computer showed recent research on undetectable poisons, including cyanide compounds.",
+      "prob_guilty": 0.85,
+      "prob_innocent": 0.05,
+      "explanation": "A guilty person might research methods before committing the crime. An innocent person would rarely have reason to research such specific poisons, though the assistant might claim research was for one of the novelist's upcoming mystery books."
+    },
+    {
+      "name": "Timeline Discrepancy",
+      "description": "The defendant initially stated they delivered medication at 8:15 PM, but security footage shows them entering the study at 7:45 PM, contradicting their initial statement.",
+      "prob_guilty": 0.75,
+      "prob_innocent": 0.20,
+      "explanation": "A guilty person is more likely to lie about their timeline. An innocent person might misremember times during a stressful event or have legitimate reasons for the discrepancy."
+    },
+    {
+      "name": "Trace Evidence",
+      "description": "Microscopic traces of cyanide were found under the defendant's fingernails during forensic examination.",
+      "prob_guilty": 0.92,
+      "prob_innocent": 0.08,
+      "explanation": "If guilty, handling the poison would likely leave trace evidence. If innocent, such traces would be rare, though possible through environmental contamination or if they handled the poisoned medication container afterward."
+    },
+    {
+      "name": "Character Testimony",
+      "description": "Multiple witnesses testify to the close, positive relationship between the victim and defendant, stating the victim trusted the defendant implicitly.",
+      "prob_guilty": 0.60,
+      "prob_innocent": 0.85,
+      "explanation": "An innocent, trusted assistant would have strong character references. A guilty person might have cultivated the same relationships as cover, but typically there would be some signs of tension."
+    }
+  ],
+  "literary_context": {
+    "victim_profession": "Mystery novelist",
+    "relevance": "The victim wrote murder mysteries featuring poisonings, creating an ironic element and possibly suggesting the murderer was inspired by her work."
+  }
+}

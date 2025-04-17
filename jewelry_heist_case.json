@@ -1,0 +1,43 @@
+{
+  "case": {
+    "name": "The Diamond District Heist",
+    "description": "A collection of rare diamonds worth $2 million was stolen from a high-security jewelry store during business hours.",
+    "population": 350000
+  },
+  "prior": {
+    "odds": 0.0000028571,
+    "db": -55
+  },
+  "evidence": [
+    {
+      "name": "Security Camera Footage",
+      "description": "The suspect was recorded browsing in the store 30 minutes before the theft was discovered.",
+      "prob_guilty": 0.9,
+      "prob_innocent": 0.03
+    },
+    {
+      "name": "Security System Knowledge",
+      "description": "The alarm was disabled using a specialized technique. The suspect previously worked for the security company.",
+      "prob_guilty": 0.85,
+      "prob_innocent": 0.01
+    },
+    {
+      "name": "Phone Records",
+      "description": "Cell tower data places the suspect's phone near the jewelry store at the time of the theft.",
+      "prob_guilty": 0.95,
+      "prob_innocent": 0.2
+    },
+    {
+      "name": "Recent Purchases",
+      "description": "The suspect, previously in financial trouble, made several large cash purchases the week after the theft.",
+      "prob_guilty": 0.75,
+      "prob_innocent": 0.05
+    },
+    {
+      "name": "Forensic Evidence",
+      "description": "A partial fingerprint found on the display case shares several points of comparison with the suspect's fingerprints.",
+      "prob_guilty": 0.7,
+      "prob_innocent": 0.08
+    }
+  ]
+}
