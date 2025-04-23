@@ -1,0 +1,157 @@
+{
+  "case": {
+    "name": "The Roadhouse Murder",
+    "description": "At the Edge of Town Bar, a patron's throat was slashed late Saturday night. The bar had 50 people: 20 members of the 'Steel Vultures' biker gang and 30 regular patrons. A non-biker whose fingerprints were found on the murder weapon has been charged.",
+    "population": 50,
+    "details": "The victim was a regular patron with no known gang affiliations. The murder weapon was a hunting knife recovered from a trash bin behind the bar with 5 different sets of fingerprints on it. The defendant is a non-biker regular at the bar who claims he only handled the knife earlier in the evening to help cut limes for drinks."
+  },
+  "prior": {
+    "odds": 0.0333,
+    "db": -15,
+    "explanation": "Initially, assuming any of the 30 non-bikers could be guilty (excluding the victim), the prior probability is 1/30."
+  },
+  "evidence": [
+    {
+      "name": "Fingerprints on Murder Weapon",
+      "description": "The defendant's fingerprints were found on the murder weapon among 5 total sets of prints.",
+      "prob_guilty": 0.98,
+      "prob_innocent": 0.13,
+      "explanation": "If guilty, the defendant's prints would almost certainly be on the knife (98%). If innocent, there's a lower chance that the defendant would have touched the knife for innocent reasons (prints found on 4 out of 30 non-bikers).",
+      "player_db_update": 6.901960800285137,
+      "updated_total_db": -8.098039199714863
+    },
+    {
+      "name": "Blood Spatter Evidence",
+      "description": "Small amounts of blood spatter were found on the defendant's clothing.",
+      "prob_guilty": 0.95,
+      "prob_innocent": 0.05,
+      "explanation": "A guilty person would likely have blood spatter. An innocent person might have small amounts from being nearby during the attack or from other bar activities.",
+      "player_db_update": 6.532125137753438,
+      "updated_total_db": -1.5659140619614256
+    },
+    {
+      "name": "Witness Testimony",
+      "description": "A witness claims they saw the defendant arguing with the victim 30 minutes before the murder.",
+      "prob_guilty": 0.7,
+      "prob_innocent": 0.2,
+      "explanation": "Most murderers have prior conflict with victims, but many people argue in bars without committing violence later.",
+      "player_db_update": 1.413291527964693,
+      "updated_total_db": -0.15262253399673265
+    },
+    {
+      "name": "Gang Member Statement",
+      "description": "A member of the Steel Vultures, under immunity, claims the gang was not involved and points to the defendant.",
+      "prob_guilty": 0.6,
+      "prob_innocent": 0.3,
+      "explanation": "If the defendant is guilty, a gang member might tell the truth to avoid gang trouble. If innocent, a gang member might lie to protect their own.",
+      "player_db_update": 0.8813608870055123,
+      "updated_total_db": 0.7287383530087796
+    },
+    {
+      "name": "Security Camera Gap",
+      "description": "The defendant was absent from security camera footage for 5 minutes during the estimated time of murder.",
+      "prob_guilty": 0.8,
+      "prob_innocent": 0.4,
+      "explanation": "A murderer would need to be absent from cameras during the crime. Many innocent people also temporarily leave camera view for benign reasons (bathroom, phone call, etc.).",
+      "player_db_update": 4.4715803134221925,
+      "updated_total_db": 5.200318666430972
+    },
+    {
+      "name": "Lime Cutting Alibi",
+      "description": "The bartender confirms the defendant did help cut limes earlier, but isn't certain about the specific knife used.",
+      "prob_guilty": 0.5,
+      "prob_innocent": 0.9,
+      "explanation": "An innocent person who handled the knife for lime cutting would have this confirmation. A guilty person might have also handled the knife earlier, creating a preemptive alibi.",
+      "player_db_update": 3.5902194264166805,
+      "updated_total_db": 8.790538092847653
+    }
+  ],
+  "biker_gang_context": {
+    "name": "Steel Vultures",
+    "reputation": "Known for violence, territorial disputes, and intimidation",
+    "relevance": "Their presence creates alternative suspects and potential witness intimidation factors"
+  },
+  "player_responses": [
+    {
+      "evidence_index": 0,
+      "evidence_name": "Fingerprints on Murder Weapon",
+      "player_prob_guilty": 0.98,
+      "player_prob_innocent": 0.2,
+      "used_rating_scale": true,
+      "db_update": 6.901960800285137,
+      "actual_prob_guilty": 0.98,
+      "actual_prob_innocent": 0.13,
+      "player_guilty_rating": 9,
+      "player_innocent_rating": 3,
+      "actual_db_update": 8.77282723385658
+    },
+    {
+      "evidence_index": 1,
+      "evidence_name": "Blood Spatter Evidence",
+      "player_prob_guilty": 0.9,
+      "player_prob_innocent": 0.2,
+      "used_rating_scale": true,
+      "db_update": 6.532125137753438,
+      "actual_prob_guilty": 0.95,
+      "actual_prob_innocent": 0.05,
+      "player_guilty_rating": 8,
+      "player_innocent_rating": 3,
+      "actual_db_update": 12.787536009528289
+    },
+    {
+      "evidence_index": 2,
+      "evidence_name": "Witness Testimony",
+      "player_prob_guilty": 0.9,
+      "player_prob_innocent": 0.65,
+      "used_rating_scale": true,
+      "db_update": 1.413291527964693,
+      "actual_prob_guilty": 0.7,
+      "actual_prob_innocent": 0.2,
+      "player_guilty_rating": 8,
+      "player_innocent_rating": 6,
+      "actual_db_update": 5.440680443502756
+    },
+    {
+      "evidence_index": 3,
+      "evidence_name": "Gang Member Statement",
+      "player_prob_guilty": 0.98,
+      "player_prob_innocent": 0.8,
+      "used_rating_scale": true,
+      "db_update": 0.8813608870055123,
+      "actual_prob_guilty": 0.6,
+      "actual_prob_innocent": 0.3,
+      "player_guilty_rating": 9,
+      "player_innocent_rating": 7,
+      "actual_db_update": 3.010299956639812
+    },
+    {
+      "evidence_index": 4,
+      "evidence_name": "Security Camera Gap",
+      "player_prob_guilty": 0.98,
+      "player_prob_innocent": 0.35,
+      "used_rating_scale": true,
+      "db_update": 4.4715803134221925,
+      "actual_prob_guilty": 0.8,
+      "actual_prob_innocent": 0.4,
+      "player_guilty_rating": 9,
+      "player_innocent_rating": 4,
+      "actual_db_update": 3.010299956639812
+    },
+    {
+      "evidence_index": 5,
+      "evidence_name": "Lime Cutting Alibi",
+      "player_prob_guilty": 0.8,
+      "player_prob_innocent": 0.35,
+      "used_rating_scale": true,
+      "db_update": 3.5902194264166805,
+      "actual_prob_guilty": 0.5,
+      "actual_prob_innocent": 0.9,
+      "player_guilty_rating": 7,
+      "player_innocent_rating": 4,
+      "actual_db_update": -2.5527250510330606
+    }
+  ],
+  "final_evidence_db": 8.790538092847653,
+  "guilt_threshold_db": 23.979400086720375,
+  "verdict": "NOT GUILTY"
+}

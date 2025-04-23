@@ -2,6 +2,7 @@ import math
 import time
 import json
 import os
+
 from datetime import datetime
 
 def decibels_to_probability(db):
@@ -69,6 +70,7 @@ class BayesianCourtGame:
         self.current_evidence_db = self.case_data["prior"]["db"]
         self.player_responses = []
         self.evidence_presented = 0
+        self.use_rating_scale = None  # Will be set by set_probability_input_method
         self.integer_probability_dict = {
             0: 0.001,
             1: 0.02,
@@ -116,6 +118,31 @@ class BayesianCourtGame:
         except Exception as e:
             print(f"Error saving results: {e}")
     
+    def set_probability_input_method(self):
+        """Set the default method for entering probabilities."""
+        print_slowly("\nBefore we begin, please choose how you'd like to enter probabilities:")
+        print_slowly("1. Using a rating scale from 0-10")
+        print_slowly("   0 = Very unlikely (0.1%)")
+        print_slowly("   5 = Equal chance (50%)")
+        print_slowly("   10 = Almost certain (99.9%)")
+        print_slowly("2. Entering a probability directly (0-1)")
+        
+        while True:
+            choice = input("\nEnter your choice (1 or 2): ").strip()
+            if choice == '1':
+                self.use_rating_scale = True
+                break
+            elif choice == '2':
+                self.use_rating_scale = False
+                break
+            else:
+                print("Please enter either 1 or 2.")
+        
+        print_slowly("\nYou've chosen to use the " + ("rating scale" if self.use_rating_scale else "direct probability input") + " method.")
+        print_slowly("This will be your default method for all evidence assessments.")
+        input("\nPress Enter to continue...")
+        clear_screen()
+
     def start_game(self):
         """Start the Bayesian court game."""
         print_title()
@@ -123,6 +150,9 @@ class BayesianCourtGame:
         print_slowly("Welcome to the Bayesian Jurisprudence simulation.")
         print_slowly("In this game, you'll analyze evidence in a criminal case using Bayesian probability.")
         print_slowly("You'll estimate the probability of guilt as new evidence is presented.")
+        
+        # Set the default probability input method
+        self.set_probability_input_method()
         
         # Set the player's tolerance for false convictions first
         self.set_guilt_threshold()
@@ -216,33 +246,51 @@ class BayesianCourtGame:
         """Get the player's probability estimates and calculate the update."""
         evidence = self.case_data["evidence"][evidence_index]
         
-        print_slowly("\nYou can enter probabilities in two ways:")
-        print_slowly("1. Using a rating scale from 0-10")
-        print_slowly("   0 = Very unlikely (0.1%)")
-        print_slowly("   5 = Equal chance (50%)")
-        print_slowly("   10 = Almost certain (99.9%)")
-        print_slowly("2. Entering a probability directly (0-1)")
-        
-        use_rating = input("\nWould you like to use the rating scale? (y/n): ").lower().strip() == 'y'
-        
-        if use_rating:
-            print_slowly("\nRate these probabilities on a scale of 0-10:")
-            # Get probability for innocent first
-            innocent_rating = get_valid_number("\nRate likelihood if INNOCENT P(evidence|innocent)(0-10): ", min_val=0, max_val=10, allow_float=False)
-            prob_innocent = self.integer_probability_dict[innocent_rating]
+        while True:  # Loop until user confirms their inputs
+            # Use the default method set at the start
+            use_rating = self.use_rating_scale
             
-            guilty_rating = get_valid_number("Rate likelihood if GUILTY P(evidence|guilty)(0-10): ", min_val=0, max_val=10, allow_float=False)
-            prob_guilty = self.integer_probability_dict[guilty_rating]
-        else:
-            print_slowly("\nEnter probabilities between 0 and 1:")
-            # Get probability for innocent first
-            prob_innocent = get_valid_number("\nP(evidence|innocent) - Enter probability (0-1): ", min_val=0.00001, max_val=0.9999)
-            prob_guilty = get_valid_number("P(evidence|guilty) - Enter probability (0-1): ", min_val=0.0001, max_val=0.9999)
-            guilty_rating = None
-            innocent_rating = None
-        
-        # Calculate update in decibels
-        db_update = 10 * math.log10(prob_guilty / prob_innocent)
+            if use_rating:
+                print_slowly("\nRate these probabilities on a scale of 0-10:")
+                print_slowly("   0 = Very unlikely (0.1%)")
+                print_slowly("   5 = Equal chance (50%)")
+                print_slowly("   10 = Almost certain (99.9%)")
+                # Get probability for innocent first
+                innocent_rating = get_valid_number("\nRate likelihood if INNOCENT P(evidence|innocent)(0-10): ", min_val=0, max_val=10, allow_float=False)
+                prob_innocent = self.integer_probability_dict[innocent_rating]
+                
+                guilty_rating = get_valid_number("Rate likelihood if GUILTY P(evidence|guilty)(0-10): ", min_val=0, max_val=10, allow_float=False)
+                prob_guilty = self.integer_probability_dict[guilty_rating]
+            else:
+                print_slowly("\nEnter probabilities between 0 and 1:")
+                # Get probability for innocent first
+                prob_innocent = get_valid_number("\nP(evidence|innocent) - Enter probability (0-1): ", min_val=0.00001, max_val=0.9999)
+                prob_guilty = get_valid_number("P(evidence|guilty) - Enter probability (0-1): ", min_val=0.0001, max_val=0.9999)
+                guilty_rating = None
+                innocent_rating = None
+            
+            # Calculate update in decibels
+            db_update = 10 * math.log10(prob_guilty / prob_innocent)
+            
+            # Display the current estimates for confirmation
+            print_slowly(f"\nYour current probability estimates:")
+            if use_rating:
+                print_slowly(f"• Guilty rating: {guilty_rating}/10 → P(evidence|guilty) = {prob_guilty:.4f}")
+                print_slowly(f"• Innocent rating: {innocent_rating}/10 → P(evidence|innocent) = {prob_innocent:.4f}")
+            else:
+                print_slowly(f"• P(evidence|guilty) = {prob_guilty:.4f}")
+                print_slowly(f"• P(evidence|innocent) = {prob_innocent:.4f}")
+            print_slowly(f"• Likelihood ratio = {prob_guilty/prob_innocent:.4f}")
+            print_slowly(f"• Evidence update = {db_update:.1f} db")
+            
+            # Ask for confirmation
+            confirm = input("\nAre you sure about these values? (y/n): ").lower().strip()
+            if confirm == 'y':
+                break
+            else:
+                print_slowly("\nLet's try again...")
+                clear_screen()
+                self.present_evidence(evidence_index)  # Re-present the evidence
         
         # Store the player's response
         player_response = {
@@ -270,7 +318,7 @@ class BayesianCourtGame:
         # Update the current evidence level
         self.current_evidence_db += db_update
         
-        # Display results
+        # Display final results
         print_slowly(f"\nYour probability estimates:")
         if use_rating:
             print_slowly(f"• Guilty rating: {guilty_rating}/10 → P(evidence|guilty) = {prob_guilty:.4f}")
@@ -296,7 +344,7 @@ class BayesianCourtGame:
             print_slowly("\n=== Explanation ===")
             print_slowly(evidence["explanation"])
         
-        # Save the updated db to the evidence item3
+        # Save the updated db to the evidence item
         evidence["player_db_update"] = db_update
         evidence["updated_total_db"] = self.current_evidence_db
         
