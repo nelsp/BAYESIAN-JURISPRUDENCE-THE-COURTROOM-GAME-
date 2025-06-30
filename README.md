@@ -1,19 +1,139 @@
-# BAYESIAN-JURISPRUDENCE-THE-COURTROOM-GAME-
+# Bayesian Jurisprudence: The Courtroom Game
 
-Let's say we have a case where someone is accused of stealing a wallet in a coffee shop:
-Evidence: Security Camera Footage
-Scenario: The security camera shows someone in a red jacket taking a wallet. The defendant was wearing a red jacket that day.
-To estimate probabilities:
-1.	P(evidence|guilty): "If the defendant is guilty, what's the probability they would be wearing a red jacket?"
-o	Well, if they committed the crime, they must have been wearing what we saw in the footage: a red jacket
-o	So P(evidence|guilty) = 100% or 1.0
-2.	P(evidence|innocent): "If the defendant is innocent, what's the probability they would be wearing a red jacket?"
-o	This depends on how common red jackets are
-o	If we know that about 15% of people in the area wear red jackets, then:
-o	P(evidence|innocent) = 15% or 0.15
-This creates a likelihood ratio of 1.0/0.15 = 6.67, which means this evidence makes guilt 6.67 times more likely than before we knew about the red jacket.
-To make this concrete:
-•	If there were 100 people in the coffee shop
-•	Originally each person had a 1% chance of being the thief
-•	After seeing the footage, someone in a red jacket would have a 6.67% chance of being the thief
-The likelihood ratios are then added to the base guilt.  The final sum is then checked against the guilt tolerance for the final verdict.  This approach helps separate what we expect to see if someone is guilty versus what we'd expect if they're innocent, which is the core of Bayesian reasoning in evaluating evidence.
+A multi-player web-based game that simulates jury deliberation using Bayesian probability theory. Players analyze evidence and reach verdicts based on probability calculations.
+
+## Features
+
+### 🎮 Multi-Player Game
+- Real-time web interface using Flask and Socket.IO
+- Multiple players can join and participate simultaneously
+- Live updates of game state and player responses
+
+### 📊 Bayesian Probability System
+- Evidence evaluation using probability theory
+- Decibel-based evidence strength calculations
+- Individual guilt thresholds for each player
+- Group verdict calculation based on collective evidence
+
+### 🧠 Philosophical Quiz
+- 24-dimensional personality assessment
+- 1-10 rating scale for nuanced responses
+- Radar chart visualization of philosophical leanings
+- Covers dimensions like Rationality, Mysticism, Individualism, Collectivism, etc.
+
+## Project Structure
+
+```
+├── bayesian-court-game/          # Flask web application
+│   ├── flask_app.py             # Main Flask server
+│   ├── bayesian_core.py         # Core game logic
+│   ├── templates/               # HTML templates
+│   │   ├── index.html          # Main game interface
+│   │   └── admin.html          # Admin panel
+│   ├── case_files/             # JSON case files
+│   └── game_results/           # Saved game results
+├── bayesian_core.py            # Core Bayesian logic (standalone)
+├── test_bayesian_core.py       # Unit tests
+├── phil_quiz.py                # Philosophical assessment tool
+├── guilt_or_innocence_game.py  # Original single-player version
+└── README.md                   # This file
+```
+
+## Getting Started
+
+### Prerequisites
+- Python 3.7+
+- Flask
+- Flask-SocketIO
+- matplotlib (for phil_quiz.py)
+
+### Installation
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/nelsp/BAYESIAN-JURISPRUDENCE-THE-COURTROOM-GAME-.git
+   cd BAYESIAN-JURISPRUDENCE-THE-COURTROOM-GAME-
+   ```
+
+2. Install dependencies:
+   ```bash
+   pip install flask flask-socketio matplotlib numpy
+   ```
+
+### Running the Web Game
+1. Navigate to the Flask app directory:
+   ```bash
+   cd bayesian-court-game
+   ```
+
+2. Start the server:
+   ```bash
+   python flask_app.py
+   ```
+
+3. Open your browser to `http://localhost:5000`
+
+### Running the Philosophical Quiz
+```bash
+python phil_quiz.py
+```
+
+### Running Tests
+```bash
+python test_bayesian_core.py
+```
+
+## How to Play
+
+### Web Game
+1. **Create a Game**: Select a case file and set maximum players
+2. **Join as Player**: Enter your name and guilt tolerance settings
+3. **Start Game**: Click "Start Game" when ready
+4. **Review Case**: Read the case information
+5. **Evaluate Evidence**: Rate each piece of evidence on probability scales
+6. **Reach Verdict**: See the group's final decision
+
+### Philosophical Quiz
+1. Answer questions on a 1-10 scale
+2. Questions cover 24 different philosophical dimensions
+3. View your results as a radar chart
+4. Compare your philosophical leanings across dimensions
+
+## Case Files
+
+The game includes several pre-built case files:
+- **Biker Bar Murder Case**: Complex murder investigation
+- **Gentleman's Club Murder Case**: High-profile case
+- **Jewelry Heist Case**: Property crime investigation
+- **Manor Murder Case**: Classic whodunit scenario
+- **Stolen Photos Case**: Digital evidence case
+
+## Technical Details
+
+### Bayesian Calculations
+- Evidence strength measured in decibels
+- Prior probability based on population statistics
+- Likelihood ratios for evidence evaluation
+- Posterior probability updates after each piece of evidence
+
+### Web Technologies
+- **Backend**: Flask with Socket.IO for real-time communication
+- **Frontend**: HTML5, CSS3, JavaScript with Socket.IO client
+- **Data**: JSON case files and game state management
+
+## Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Add tests if applicable
+5. Submit a pull request
+
+## License
+
+This project is open source and available under the MIT License.
+
+## Acknowledgments
+
+- Based on Bayesian probability theory and jury deliberation research
+- Inspired by educational games that teach statistical reasoning
+- Built for educational and research purposes
