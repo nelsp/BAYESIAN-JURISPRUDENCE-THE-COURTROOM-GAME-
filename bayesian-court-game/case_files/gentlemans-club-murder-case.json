@@ -1,0 +1,56 @@
+{
+  "case": {
+    "name": "The Diamond Lounge Murder",
+    "description": "High-end escort Sophia Vega was found strangled in a private VIP room at The Diamond Lounge, an exclusive gentleman's club. The club had 40 people present that night: 15 escorts, 20 clients, and 5 staff members. The defendant is a wealthy regular client who was seen arguing with the victim earlier that evening.",
+    "population": 40,
+    "details": "The victim was discovered by cleaning staff after hours. Security camera footage shows the victim entering the VIP room with the defendant at 11:30 PM, and the defendant leaving alone at 12:15 AM. The defendant claims he left the victim alive and well after their scheduled time together. The cause of death was manual strangulation, and time of death is estimated between 12:00-12:30 AM."
+  },
+  "prior": {
+    "odds": 0.05,
+    "db": -13,
+    "explanation": "Initially, assuming any of the 20 clients could be guilty, the prior probability is 1/20."
+  },
+  "evidence": [
+    {
+      "name": "Security Footage Timeline",
+      "description": "Security cameras show the defendant was the last person to see the victim alive, leaving the VIP room at 12:15 AM, within the estimated time of death window.",
+      "prob_guilty": 0.95,
+      "prob_innocent": 0.35,
+      "explanation": "If guilty, the defendant would necessarily be with the victim during the time of death (95%). If innocent, being the last known person to see the victim alive is circumstantial but concerning (35%)."
+    },
+    {
+      "name": "DNA Evidence",
+      "description": "The defendant's skin cells were found under the victim's fingernails, suggesting a struggle.",
+      "prob_guilty": 0.90,
+      "prob_innocent": 0.20,
+      "explanation": "If guilty, defensive wounds would likely transfer the attacker's DNA under the victim's nails. If innocent, some DNA transfer could occur during consensual intimate contact, but typically not under fingernails in significant amounts."
+    },
+    {
+      "name": "Financial Dispute",
+      "description": "Financial records and text messages reveal the victim was threatening to expose the defendant's embezzlement scheme unless paid $100,000 for silence.",
+      "prob_guilty": 0.85,
+      "prob_innocent": 0.10,
+      "explanation": "If guilty, this provides a strong motive for murder. If innocent, while the blackmail threat existed, many people seek non-violent solutions to such problems."
+    },
+    {
+      "name": "Bruising Pattern Analysis",
+      "description": "Forensic analysis of bruising on the victim's neck indicates the attacker was left-handed. The defendant is left-handed.",
+      "prob_guilty": 0.70,
+      "prob_innocent": 0.25,
+      "explanation": "Left-handedness occurs in approximately 10% of the population, but the bruising pattern is not 100% conclusive about handedness. If guilty, there's a high chance the bruising would match. If innocent, this is merely a demographic match shared with many others."
+    },
+    {
+      "name": "Witness Statement",
+      "description": "A club bartender overheard the defendant tell the victim, 'You'll regret this, I promise' during their earlier argument.",
+      "prob_guilty": 0.65,
+      "prob_innocent": 0.30,
+      "explanation": "Threatening statements often precede violence if the person is guilty. However, such statements are often hyperbolic expressions of anger that don't lead to violence if the person is innocent."
+    }
+  ],
+  "club_context": {
+    "name": "The Diamond Lounge",
+    "clientele": "Wealthy businessmen, politicians, and celebrities",
+    "security": "Discreet but thorough, with gaps in camera coverage in VIP rooms for privacy",
+    "relevance": "The exclusive nature of the club creates a complex environment where reputation and discretion are paramount, potentially affecting witness reliability."
+  }
+}

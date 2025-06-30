@@ -1,0 +1,62 @@
+{
+  "case": {
+    "name": "The Roadhouse Murder",
+    "description": "At the Edge of Town Bar, a patron's throat was slashed late Saturday night. The bar had 50 people: 20 members of the 'Steel Vultures' biker gang and 30 regular patrons. A non-biker whose fingerprints were found on the murder weapon has been charged.",
+    "population": 50,
+    "details": "The victim was a regular patron with no known gang affiliations. The murder weapon was a hunting knife recovered from a trash bin behind the bar with 5 different sets of fingerprints on it. The defendant is a non-biker regular at the bar who claims he only handled the knife earlier in the evening to help cut limes for drinks."
+  },
+  "prior": {
+    "odds": 0.0333,
+    "db": -15,
+    "explanation": "Initially, assuming any of the 30 non-bikers could be guilty (excluding the victim), the prior probability is 1/30."
+  },
+  "evidence": [
+    {
+      "name": "Fingerprints on Murder Weapon",
+      "description": "The defendant's fingerprints were found on the murder weapon among 5 total sets of prints.",
+      "prob_guilty": 0.98,
+      "prob_innocent": 0.13,
+      "explanation": "If guilty, the defendant's prints would almost certainly be on the knife (98%). If innocent, there's a lower chance that the defendant would have touched the knife for innocent reasons (prints found on 4 out of 30 non-bikers)."
+    },
+    {
+      "name": "Blood Spatter Evidence",
+      "description": "Small amounts of blood spatter were found on the defendant's clothing.",
+      "prob_guilty": 0.95,
+      "prob_innocent": 0.05,
+      "explanation": "A guilty person would likely have blood spatter. An innocent person might have small amounts from being nearby during the attack or from other bar activities."
+    },
+    {
+      "name": "Witness Testimony",
+      "description": "A witness claims they saw the defendant arguing with the victim 30 minutes before the murder.",
+      "prob_guilty": 0.7,
+      "prob_innocent": 0.2,
+      "explanation": "Most murderers have prior conflict with victims, but many people argue in bars without committing violence later."
+    },
+    {
+      "name": "Gang Member Statement",
+      "description": "A member of the Steel Vultures, under immunity, claims the gang was not involved and points to the defendant.",
+      "prob_guilty": 0.6,
+      "prob_innocent": 0.3,
+      "explanation": "If the defendant is guilty, a gang member might tell the truth to avoid gang trouble. If innocent, a gang member might lie to protect their own."
+    },
+    {
+      "name": "Security Camera Gap",
+      "description": "The defendant was absent from security camera footage for 5 minutes during the estimated time of murder.",
+      "prob_guilty": 0.8,
+      "prob_innocent": 0.4,
+      "explanation": "A murderer would need to be absent from cameras during the crime. Many innocent people also temporarily leave camera view for benign reasons (bathroom, phone call, etc.)."
+    },
+    {
+      "name": "Lime Cutting Alibi",
+      "description": "The bartender confirms the defendant did help cut limes earlier, but isn't certain about the specific knife used.",
+      "prob_guilty": 0.5,
+      "prob_innocent": 0.9,
+      "explanation": "An innocent person who handled the knife for lime cutting would have this confirmation. A guilty person might have also handled the knife earlier, creating a preemptive alibi."
+    }
+  ],
+  "biker_gang_context": {
+    "name": "Steel Vultures",
+    "reputation": "Known for violence, territorial disputes, and intimidation",
+    "relevance": "Their presence creates alternative suspects and potential witness intimidation factors"
+  }
+}

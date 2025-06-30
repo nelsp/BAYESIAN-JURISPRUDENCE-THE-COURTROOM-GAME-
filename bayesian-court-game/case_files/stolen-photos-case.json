@@ -1,0 +1,54 @@
+{
+  "case": {
+    "name": "The Stolen Intimate Photos Case",
+    "description": "A collection of sexually explicit photos of Mrs. Reynolds has gone missing from a locked drawer in the master bedroom of the Reynolds estate. The cleaning lady, Maria Gonzalez, has been accused of stealing them. Only five people had regular access to the house and bedroom: the cleaning lady, Mr. and Mrs. Reynolds, the maintenance man, and Mr. Reynolds' brother.",
+    "population": 5,
+    "details": "The photos were stored in a locked drawer in the bedroom vanity. Mrs. Reynolds discovered they were missing after returning from a weekend trip. The drawer showed signs of being forced open with a thin tool. The cleaning lady, Maria, has worked for the family for 8 years with no prior incidents. The photos disappeared approximately two weeks after Mr. Reynolds' brother stayed at the house following a personal crisis."
+  },
+  "prior": {
+    "odds": 0.2,
+    "db": -7,
+    "explanation": "Initially, assuming any of the 5 people with access to the house could be guilty, the prior probability is 1/5."
+  },
+  "evidence": [
+    {
+      "name": "Cleaning Schedule Records",
+      "description": "Records show the cleaning lady was alone in the house on three occasions between when the photos were last seen and when they were discovered missing.",
+      "prob_guilty": 0.95,
+      "prob_innocent": 0.60,
+      "explanation": "If guilty, the cleaning lady would need opportunity to access the bedroom alone (95%). If innocent, her presence alone in the house multiple times is simply part of her normal cleaning duties (60%)."
+    },
+    {
+      "name": "Small Pry Mark Analysis",
+      "description": "The lock on the drawer was forced open with a thin metal tool. A similar tool was found in Maria's cleaning supplies.",
+      "prob_guilty": 0.80,
+      "prob_innocent": 0.25,
+      "explanation": "If guilty, Maria would likely use a tool she had access to. If innocent, many people have access to similar common household tools, but her possession of one is notable."
+    },
+    {
+      "name": "Financial Records",
+      "description": "Bank records show Maria recently made a $2,000 cash deposit, which she claims was a gift from her family. The timing coincides with the disappearance of the photos.",
+      "prob_guilty": 0.70,
+      "prob_innocent": 0.15,
+      "explanation": "If guilty, this could represent payment for selling the photos. If innocent, people occasionally receive cash gifts or have other income sources, though the timing is suspicious."
+    },
+    {
+      "name": "Browser History",
+      "description": "Mr. Reynolds' brother's laptop shows searches for 'selling celebrity intimate photos' and 'how much are leaked photos worth' the day after he left the Reynolds estate.",
+      "prob_guilty": 0.20,
+      "prob_innocent": 0.85,
+      "explanation": "If Maria is guilty, it's unlikely the brother would be researching photo selling. If Maria is innocent, these searches strongly suggest someone else (likely the brother) was planning to sell the photos."
+    },
+    {
+      "name": "Anonymous Tip",
+      "description": "Police received an anonymous call claiming to have seen similar photos of Mrs. Reynolds on a private content marketplace, posted by a user with the handle 'MechMan52'. The maintenance man's social media uses similar handles.",
+      "prob_guilty": 0.10,
+      "prob_innocent": 0.70,
+      "explanation": "If Maria is guilty, it's unlikely the photos would be connected to someone else's online persona. If innocent, this evidence points to the maintenance man as a potential alternative suspect."
+    }
+  ],
+  "household_dynamics": {
+    "tensions": "Recent marital issues between Mr. and Mrs. Reynolds; Mr. Reynolds' brother has financial problems; Maintenance man was recently given notice his position would be eliminated",
+    "relevance": "Multiple individuals had both access and potential motives, creating a complex environment of competing incentives and opportunities."
+  }
+}
